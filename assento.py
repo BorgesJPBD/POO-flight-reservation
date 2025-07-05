@@ -1,16 +1,33 @@
-class Assento:
-    def __init__(self, numero, tipo):
-        self.numero = numero
-        self.tipo = tipo
-        self.disponivel = True
-        self.cliente = None
+from reserva import Reserva
 
-    def reservar(self,cliente): #Esse método é chamado quando alguém tenta reservar o assento   #Ele recebe como parâmetro o cliente que vai sentar ali
-        if self.disponivel: #Aqui o sistema verifica se o assento está disponível (livre) #Se self.disponivel for True, o assento está vazio e pode ser reservado
-            self.cliente = cliente # Associa o cliente ao assento #Se o assento estiver livre, o cliente é atribuído ao assento
-            self.disponivel = False #Agora o assento não está mais disponível
-            return True #Retorna True para indicar que a reserva foi bem-sucedida
-        else: #Se o assento não estiver disponível (self.disponivel for False)
-            return False
+class Assento(Reserva):
+    def __init__(self, numero, tipo):
+        self._numero        = numero
+        self._tipo          = tipo
+        self._disponivel    = True
+        self._cliente       = None
+
+    @property
+    def numero(self):
+        return self._numero
+
+    @property
+    def tipo(self):
+        return self._tipo
+
+    @property
+    def disponivel(self):
+        return self._disponivel
+
+    @property
+    def cliente(self):
+        return self._cliente
+
+    def reservar(self, cliente):
+        if self._disponivel:
+            self._cliente = cliente
+            self._disponivel = False
+            return True
+        return False
 
     
