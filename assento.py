@@ -15,6 +15,12 @@ class Assento(Reserva):
     def tipo(self):
         return self._tipo
 
+    @tipo.setter
+    def tipo(self, value):
+        if value not in ["Econômica", "Executiva", "Primeira Classe"]:
+            raise ValueError("Tipo de assento inválido")
+        self._tipo = value
+
     @property
     def disponivel(self):
         return self._disponivel

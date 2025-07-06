@@ -27,9 +27,13 @@ class Voo:
     def numero(self):
         return self._numero
     
+    
     @numero.setter
     def numero(self, value):
-        self._numero = value
+        if not isinstance(value, str) or not value.strip():
+            raise ValueError("Número do voo inválido")
+        self._numero = value.strip()
+
 
     @property
     def origem(self):
